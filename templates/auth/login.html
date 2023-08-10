@@ -22,11 +22,16 @@
                 <h1> LOGIN </h1>
                 {% csrf_token %}
                 <div class="field">
+                    <label for="username"> USE YOUR EMAIL FOR USERNAME </label>
+                    <label for="username"> (all lowercase) </label>
                     <label for="username"> Username </label>
                     <input type="text" id="username" name="username" required>
                 </div>
 
                 <div class="field">
+                    <label for="username"> INDEX NUMBER FOR PASSWORD </label>
+                    <label for="username"> FORMAT: XXXXXXXXXX-20XX  </label>
+                    <label for="username"> (use hypthen as seperator, no slashes)  </label>
                     <label for="pass1"> Password </label>
                     <input type="password" id="pass1" name="pass1" required>
                 </div>

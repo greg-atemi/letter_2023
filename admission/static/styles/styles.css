@@ -438,8 +438,9 @@ html,body{
 }
 
 .footer{
+    display: none;
     background-color: #FFFFFF;
-    display: flex;
+    /*display: flex;*/
 }
 
 .footer .map{
