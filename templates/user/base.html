@@ -1,0 +1,120 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.png'%}">
+    <link rel="stylesheet" type="text/css" href="/static/styles/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&family=Open+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    {% block title_block %}
+    {% endblock %}
+</head>
+
+<body>
+<div class="parent">
+    <div class="navbar">
+        <img class="brand" src="{% static 'images/logo.png' %}" alt="logo">
+        <ul>
+            <li><a href="#">HOME</a> </li>
+            <li><a href="#">CONTACT</a> </li>
+            <li>
+                {% if user.is_authenticated %}
+                    <div class="account">
+                        <a href="#">Hi, {{ fname }} </a>
+                        <a href={% url 'admission:log_out' %}>LOGOUT</a>
+                    </div>
+                {% else %}
+                    <div class="account">
+                        <a href={% url 'admission:login' %}>LOGIN</a>
+                    </div>
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+
+    <div class="navbar_small">
+        <div>
+            <a href="admission/{{ index_number }}">
+                <img class="brand_small" src="{% static 'images/logo.svg' %}" alt="logo">
+            </a>
+        </div>
+        <div>
+            <a href="{% url 'admission:log_out' %}">
+                <img class="burger" src="{% static 'images/user.svg' %}" alt="logo">
+            </a>
+        </div>
+    </div>
+
+    {% block body_block %}
+    {% endblock %}
+
+<div>
+
+{% block footer_block %}
+    <div class="footer">
+        <img class="brand-footer" src="{% static 'images/logo.png' %}" alt="logo">
+        <div class="map">
+
+        </div>
+        <div class="content-footer">
+            <div id="wrapper">
+                <div id="header">Services</div>
+                <ul id="content">
+                    <li><a href={% url 'admission:log_out' %}>Voter Registration</a></li>
+                    <li><a href={% url 'admission:log_out' %}>Update Registration</a></li>
+                    <li><a href={% url 'admission:log_out' %}>Check Registration Status</a></li>
+                </ul>
+            </div>
+
+            <div id="right-bottom-wrapper">
+                <div id="header">Follow Us</div>
+                <div id="icons">
+                    <div class="first">
+                        <img alt="facebook" src="{% static 'images/youtube.svg' %}">
+                    </div>
+                    <div class="first">
+                        <img alt="twitter" src="{% static 'images/facebook.svg' %}">
+                    </div>
+                    <div class="first">
+                        <img alt="instagram" src="{% static 'images/instagram.svg' %}">
+                    </div>
+                    <div class="last">
+                        <img alt="email" src="{% static 'images/twitter.svg' %}">
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="content-footer">
+            <div id="wrapper">
+                <div id="header">About Us</div>
+                <ul id="content">
+                    <li><a href="#">Our Vision</a></li>
+                    <li><a href="#">Our Mission</a></li>
+                    <li><a href="#">Our Leaders</a></li>
+                </ul>
+            </div>
+
+            <div id="bottom-wrapper">
+                <div id="header">
+                    <div>
+                        Our Newsletter
+                    </div>
+                </div>
+                <form>
+                    <input placeholder="johndoe@mail.com">
+                    <button class="sub-btn">Subscribe</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
+</body>
+</html>

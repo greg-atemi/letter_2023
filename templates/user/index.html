@@ -1,0 +1,35 @@
+{% extends 'user/base.html' %}
+{% load static %}
+{% block title_block %}
+    <title>Index</title>
+{% endblock %}
+
+{% block body_block %}
+    <div class="parent2">
+        {% for message in messages %}
+        <div class="message">
+            <h3>Message :</h3> {{ message }}
+        </div>
+        {% endfor %}
+
+        <div class="title">
+            WELCOME!
+        </div>
+
+        <div class="content">
+            We take this opportunity to welcome you to Kenya Institute of Mass Communication
+        </div>
+
+        <div class="content">
+            Click the button below to access your Admission letter
+        </div>
+
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="button-container">
+                <input type="submit" class="submit2" value="DOWNLOAD LETTER"/>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
