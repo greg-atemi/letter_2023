@@ -60,31 +60,21 @@ class Student(AbstractUser, PermissionsMixin):
     index_number = models.CharField(max_length=20, unique=True)
     email = models.CharField(max_length=200)
     username = models.CharField(max_length=200, unique=True)
-    first_name = models.CharField(max_length=200)
-    middle_name = models.CharField(max_length=200)
-    surname = models.CharField(max_length=200)
-    box_no = models.CharField(max_length=10)
-    box_code = models.CharField(max_length=10)
+    full_name = models.CharField(max_length=200)
+    serial_number = models.CharField(max_length=200)
+    box_no = models.CharField(max_length=200)
+    box_code = models.CharField(max_length=200)
     town = models.CharField(max_length=200)
     email_address = models.CharField(max_length=200)
-    fee_boarder = models.CharField(max_length=200)
-    fee_day = models.CharField(max_length=200)
-    country = models.CharField(max_length=200)
     course = models.CharField(max_length=200)
     phone_number = models.CharField(max_length=15)
     phone_number2 = models.CharField(max_length=15)
-    REGULAR = 'REGULAR'
-    EVENING = 'EVENING'
-    MODE_CHOICES = [
-        (REGULAR, 'REGULAR'),
-        (EVENING, 'EVENING'),
-    ]
-    mode = models.CharField(max_length=50, choices=MODE_CHOICES)
+    gender = models.CharField(max_length=50)
+    mode = models.CharField(max_length=50)
 
     objects = CustomUserManager()
 
     USERNAME_FIELD = 'username'
 
     def __str__(self):
-        full_name = self.first_name + " " + self.middle_name + " " + self.surname
-        return full_name
+        return self.full_name

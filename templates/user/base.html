@@ -20,11 +20,10 @@
         <img class="brand" src="{% static 'images/logo.png' %}" alt="logo">
         <ul>
             <li><a href="#">HOME</a> </li>
-            <li><a href="#">CONTACT</a> </li>
             <li>
                 {% if user.is_authenticated %}
                     <div class="account">
-                        <a href="#">Hi, {{ fname }} </a>
+                        <a href="#">Hi, {{ student.full_name }} </a>
                         <a href={% url 'admission:log_out' %}>LOGOUT</a>
                     </div>
                 {% else %}
