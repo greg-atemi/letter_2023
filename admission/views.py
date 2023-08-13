@@ -60,7 +60,8 @@ def generate_pdf(request, index_no):
         return HttpResponse("Record not found", status=404)
 
     logo = "admission/static/images/logo.png"
-    letterhead = "admission/letterhead.png"
+    letterhead = "admission/static/images/letterhead.png"
+    signature = "admission/static/images/sign.jpg"
     logo_img = Image(logo)
     letterhead_img = Image(letterhead)
     logo_img.hAlign = 'CENTER'
@@ -69,6 +70,7 @@ def generate_pdf(request, index_no):
     letterhead_img._width = 480
     logo_img._height = 100
     letterhead_img._height = 48
+    signature_img = Image(signature, width=220, height=100, hAlign='LEFT')
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="Calling_letter.pdf"'
 
@@ -192,7 +194,10 @@ def generate_pdf(request, index_no):
     content.append(date)
 
     index = mystudent.index_number
-    index_text = "KCSE index Number: " + index
+    if len(index) == 10:
+        index_text = ""
+    else:
+        index_text = "KCSE index Number: " + index
     indexno = Paragraph(index_text, letter2_style)
     content.append(indexno)
 
@@ -231,9 +236,13 @@ def generate_pdf(request, index_no):
     if num1 == "nan":
         num1 = ""
         num2 = ""
-    mobile_text = "Mobile No: " + num1 + " " + num2
+    mobile_text = "Mobile No: 0" + num1 + " 0" + num2
     mobile = Paragraph(mobile_text, styles['Normal'])
     content.append(mobile)
+
+    mobile_text2 = num1
+    mobile2 = Paragraph(mobile_text2, styles['Normal'])
+    content.append(mobile2)
 
     email = mystudent.email_address
     if email == "nan":
@@ -511,14 +520,9 @@ def generate_pdf(request, index_no):
     paragraph12 = Paragraph(paragraph12_text, styles['Normal'])
     content.append(paragraph12)
     content.append(blank)
+    content.append(blank)
 
-    paragraph13_text = "PETER WAKOLI"
-    paragraph13 = Paragraph(paragraph13_text, styles['Heading5'])
-    content.append(paragraph13)
-
-    paragraph14_text = "AG. DIRECTOR/CEO"
-    paragraph14 = Paragraph(paragraph14_text, styles['Heading5'])
-    content.append(paragraph14)
+    content.append(signature_img)
 
     doc.build(content)
     return response
