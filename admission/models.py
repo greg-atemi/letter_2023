@@ -1,36 +1,6 @@
+from django.contrib.auth.models import PermissionsMixin, AbstractUser
 from django.contrib.auth.base_user import BaseUserManager
-from django.contrib.auth.models import User, PermissionsMixin, AbstractUser
 from django.db import models
-
-
-# class Student(models.Model):
-#     index_number = models.CharField(max_length=20, default=None, unique=True)
-#     email = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True, default=None)
-#     first_name = models.CharField(max_length=200)
-#     middle_name = models.CharField(max_length=200)
-#     surname = models.CharField(max_length=200)
-#     box_no = models.CharField(max_length=10)
-#     box_code = models.CharField(max_length=10)
-#     town = models.CharField(max_length=200)
-#     email_address = models.CharField(max_length=200)
-#     fee_boarder = models.CharField(max_length=200)
-#     fee_day = models.CharField(max_length=200)
-#     country = models.CharField(max_length=200)
-#     course = models.CharField(max_length=200)
-#     phone_number = models.CharField(max_length=10)
-#     phone_number2 = models.CharField(max_length=10)
-#
-#     REGULAR = 'REGULAR'
-#     EVENING = 'EVENING'
-#     MODE_CHOICES = [
-#         (REGULAR, 'REGULAR'),
-#         (EVENING, 'EVENING'),
-#     ]
-#     mode = models.CharField(max_length=50, choices=MODE_CHOICES)
-#
-#     def __str__(self):
-#         full_name = self.first_name + " " + self.middle_name + " " + self.surname
-#         return full_name
 
 
 class CustomUserManager(BaseUserManager):
@@ -71,6 +41,7 @@ class Student(AbstractUser, PermissionsMixin):
     phone_number2 = models.CharField(max_length=15)
     gender = models.CharField(max_length=50)
     mode = models.CharField(max_length=50)
+    type = models.CharField(max_length=50)
 
     objects = CustomUserManager()
 
