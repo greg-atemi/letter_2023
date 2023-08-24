@@ -2999,6 +2999,13 @@ def generate_pdf_eldoret(request, index_no):
     doc = SimpleDocTemplate(response, pagesize=A4)
     styles = getSampleStyleSheet()
 
+    table_styling = TableStyle([
+        ('BACKGROUND', (0, 0), (5, 0), colors.gray),
+        ('SPAN', (0, 4), (3, 4)),
+        ('INNERGRID', (0, 0), (6, 6), 0.25, colors.black),
+        ('BOX', (0, 0), (-1, -1), 0.25, colors.black)
+    ])
+
     # Custom Styles --Start
     letter_style = ParagraphStyle(
         name='Letter',
@@ -3169,11 +3176,226 @@ def generate_pdf_eldoret(request, index_no):
     content.append(blank)
 
     paragraph1_text = "Following your application for admission into the Institute, I am pleased to offer you " \
-                      "a place at the Kenya Institute of Mass Communication. Kindly contact the administrator " \
-                      "to access your letter"
+                      "a place at Kenya Institute of Mass Communication (KIMC), as a Self – Sponsored Student " \
+                      "for a Course leading to:"
     paragraph1 = Paragraph(paragraph1_text, styles['Normal'])
     content.append(paragraph1)
 
+    line2_text = "_______________________________________________________________________________"
+    line2 = Paragraph(line2_text, line_style)
+
+    course = mystudent.course
+    title2_text = course
+    title2 = Paragraph(title2_text, title2_style)
+    content.append(blank)
+    content.append(title2)
+
+    paragraph2_text = "The course will be offered in modules, at KIMC Eldoret Campus. It will be " \
+                      "structured into eight (8) modules, three (3) projects and a three (3) months " \
+                      "compulsory Industrial Attachment."
+    paragraph2 = Paragraph(paragraph2_text, styles['Normal'])
+    content.append(paragraph2)
+    content.append(blank)
+
+    paragraph3_text = "You are expected to report on Wednesday, 13th September 2023, between " \
+                      "8.00am and 3.00pm. If you accept the offer, you will be expected to " \
+                      "report for training punctually. Please ACCEPT or REJECT the offer by " \
+                      "filling in the Acceptance Form, KIMC/KAB/ADM 002. Please note that " \
+                      "failure to report for training by the deadline you will be assumed to " \
+                      "have forfeited the chance. The DEADLINE for reporting will be on Friday, " \
+                      "22nd September 2023."
+    paragraph3 = Paragraph(paragraph3_text, styles['Normal'])
+    content.append(paragraph3)
+    content.append(blank)
+
+    paragraph4_text = "However, this admission is subject to satisfactory verification of your " \
+                      "academic documents by the KIMC authorities & KNEC. Please bring your " \
+                      "ORIGINAL & COPIES of the K.C.S.E. Certificate/Results Slips, KCPE Certificate, " \
+                      "School Leaving Certificate, National ID, & Birth Certificate, during " \
+                      "registration. Download and fill the following admission packages (forms) " \
+                      "that are available on our website: www.kimc.ac.ke, e-resources section. " \
+                      "Please bring them during the reporting the day."
+    paragraph4 = Paragraph(paragraph4_text, styles['Normal'])
+    content.append(paragraph4)
+    content.append(blank)
+
+    list_item1_text = "Acceptance Form, KIMC/KAB/ADM 02"
+    list1_item1 = (Paragraph(list_item1_text, styles['Normal'], bulletText='i)'))
+    content.append(list1_item1)
+
+    list_item2_text = "Admission Forms, KIMC/KAB/ADM 003"
+    list1_item2 = (Paragraph(list_item2_text, styles['Normal'], bulletText='ii)'))
+    content.append(list1_item2)
+
+    list_item3_text = "Medical Form, KIMC/KAB/ADM 004"
+    list1_item3 = (Paragraph(list_item3_text, styles['Normal'], bulletText='iii)'))
+    content.append(list1_item3)
+
+    list_item4_text = "Students Rules & Regulations, KIMC/KAB/ADM 0005"
+    list1_item4 = (Paragraph(list_item4_text, styles['Normal'], bulletText='iv)'))
+    content.append(list1_item4)
+
+    list_item5_text = "Hostel Application Form, KIMC/KAB/ADM 006 (Optional)"
+    list1_item5 = (Paragraph(list_item5_text, styles['Normal'], bulletText='v)'))
+    content.append(list1_item5)
+
+    paragraph5_text = "NB: Please note that upon successful completion of the module certificate course, " \
+                      "you will be eligible for re-admission into a two (2) year Upgrading Diploma. " \
+                      "However, you will need to apply."
+    paragraph5 = Paragraph(paragraph5_text, styles['Normal'])
+    content.append(blank)
+    content.append(paragraph5)
+
+    paragraph5_text = "You are expected to make your own travel arrangements. The Institute is " \
+                      "located at Homecraft Centre, Pioneer Area, Eldoret Town."
+    paragraph5 = Paragraph(paragraph5_text, styles['Normal'])
+    content.append(blank)
+    content.append(paragraph5)
+
+    content.append(blank)
+    content.append(blank)
+
+    title3_text = "JOINING INSTRUCTIONS :"
+    title3 = Paragraph(title3_text, title2_style)
+    content.append(title3)
+
+    no1_text = "1."
+    paragraph6_text = "Requirements:"
+    no1 = Paragraph(no1_text, number_style)
+    paragraph6 = Paragraph(paragraph6_text, normal_indent_style)
+    content.append(blank)
+    content.append(no1)
+    content.append(paragraph6)
+
+    paragraph6_text_list_item1_text = "Stationery. All students MUST bring enough stationery (Writing Materials)."
+    paragraph6_text_list_item1 = (Paragraph(paragraph6_text_list_item1_text, normal_indent_style,
+                                            bulletText='               a)'))
+    content.append(paragraph6_text_list_item1)
+
+    paragraph6_text_list_item2_text = "Laptop. All KIMC Course are computer - aided. All students are encouraged to " \
+                                      "buy a laptop. Please visit our website: www.kimc.ac.ke for recommended " \
+                                      "specifications."
+    paragraph6_text_list_item2 = (Paragraph(paragraph6_text_list_item2_text, normal_indent_style,
+                                            bulletText='            b)'))
+    content.append(paragraph6_text_list_item2)
+
+    no2_text = "2."
+    paragraph7_text = "Accommodation. This is a NON-RESIDENTIAL course. However, there are private " \
+                      "hostels that host students. Please make your personal arrangements."
+    no2 = Paragraph(no2_text, number_style)
+    paragraph7 = Paragraph(paragraph7_text, normal_indent_style)
+    content.append(blank)
+    content.append(no2)
+    content.append(paragraph7)
+
+    no3_text = "3."
+    paragraph8_text = "Fees Structure (2023/2024): "
+    no3 = Paragraph(no3_text, number_style)
+    paragraph8 = Paragraph(paragraph8_text, normal_indent_style)
+    content.append(no3)
+    content.append(paragraph8)
+
+    paragraph8_text_list_item1_text = "The Institute fees and charges are as below but are subject to review:"
+    paragraph8_text_list_item1 = (Paragraph(paragraph8_text_list_item1_text, normal_indent_style,
+                                            bulletText='            a)'))
+    content.append(paragraph8_text_list_item1)
+    content.append(blank)
+
+    table_data = [
+        ['No.', 'Fees', 'No. of Modules', 'Rate per Module Ksh.', 'Amount Payable (Ksh.)'],
+        ['1', 'Administration and Registration', '-', '-', '1,000.00'],
+        ['2', 'Tuition', '8', '15,000.00', '120,000.00'],
+        ['3', 'STO Practical Session (Nairobi)', '-', '-', '4,500.00'],
+        ['Total', '', '', '', '125,500.00'],
+    ]
+    table = Table(table_data)
+    table.setStyle(table_styling)
+    content.append(table)
+    content.append(blank)
+
+    paragraph8_text_list_item2_text = "Tuition Fees. Fees can be paid in full i.e., Ksh.125,500.00 or in " \
+                                      "Three (3) instalments as follows:"
+    paragraph8_text_list_item2 = (Paragraph(paragraph8_text_list_item2_text, normal_indent_style,
+                                            bulletText='            b)'))
+    content.append(paragraph8_text_list_item2)
+
+    paragraph8_text_list_item2_1_text = "Term 1: Ksh.63,250.00 (that includes registration fee of " \
+                                        "Ksh.1,000.00) payable during registration."
+    paragraph8_text_list_item2_1 = (Paragraph(paragraph8_text_list_item2_1_text, normal_indent2_style,
+                                              bulletText='            i)'))
+    content.append(paragraph8_text_list_item2_1)
+    content.append(blank)
+
+    paragraph8_text_list_item2_2_text = "Term 2: Ksh.31,125.00, payable at the start of Term 2"
+    paragraph8_text_list_item2_2 = (Paragraph(paragraph8_text_list_item2_2_text, normal_indent2_style,
+                                              bulletText='           ii)'))
+    content.append(paragraph8_text_list_item2_2)
+    content.append(blank)
+
+    paragraph8_text_list_item2_3_text = "Term 3: Ksh.31,125.00, payable at the start of Term 3"
+    paragraph8_text_list_item2_3 = (Paragraph(paragraph8_text_list_item2_3_text, normal_indent2_style,
+                                              bulletText='            iii)'))
+    content.append(paragraph8_text_list_item2_3)
+    content.append(blank)
+
+    paragraph9_text_list_item3_text = "Mode of Payment: KIMC DOES NOT ACCEPT CASH PAYMENTS, AGENT BANKING OR " \
+                                      "INSTITUTIONAL CHEQUES. All Payments MUST be paid to: Kenya Institute " \
+                                      "of Mass Communication, Kenya Commercial Bank (KCB), KICC Branch, " \
+                                      "Account No. 1143 244 362. Please note that fees once paid is NOT " \
+                                      "refundable or transferable."
+    paragraph9_text_list_item3 = (Paragraph(paragraph9_text_list_item3_text, normal_indent_style,
+                                            bulletText='            c)'))
+    content.append(paragraph9_text_list_item3)
+
+    paragraph10_text_list_item4_text = "HELB: Needy students may apply for HELB Loan. To apply, visit HELB " \
+                                       "website on www.helb.co.ke or their Offices at Anniversary Towers, " \
+                                       "Nairobi. Use the Serial Number (S.No.) on the first page of this " \
+                                       "letter in place of Admission No. when applying for HELB Loan."
+    paragraph10_text_list_item4 = (Paragraph(paragraph10_text_list_item4_text, normal_indent_style,
+                                             bulletText='            d)'))
+    content.append(paragraph10_text_list_item4)
+    content.append(blank)
+
+    no4_text = "4."
+    paragraph11_text = "Medical Cover: KIMC provides First Aid Medical Care Services ONLY. Parents/Guardians " \
+                       "are FULLY responsible for ALL of their children’s medical expenses. Please note that " \
+                       "all students MUST have an active medical insurance cover when reporting"
+    no4 = Paragraph(no4_text, number_style)
+    paragraph11 = Paragraph(paragraph11_text, normal_indent_style)
+    content.append(no4)
+    content.append(paragraph11)
+    content.append(blank)
+
+    no5_text = "5."
+    paragraph12_text = "Discipline:  All students MUST at all times observe and abide by all KIMC Rules & " \
+                       "Regulations as enshrined in the KIMC Academic Policy.  Carefully read & fill in " \
+                       "the KIMC Form KIMC/KAB/ADM 005 available on our website. Please note that your " \
+                       "studentship will depend on your academic performance and discipline, inside & outside " \
+                       "the Institute."
+    no5 = Paragraph(no5_text, number_style)
+    paragraph10 = Paragraph(paragraph12_text, normal_indent_style)
+    content.append(no5)
+    content.append(paragraph10)
+    content.append(blank)
+    content.append(blank)
+
+    no6_text = "6."
+    paragraph11_text = "Correspondences: All correspondences MUST be addressed to the Director " \
+                       "using the above addresses. "
+    no6 = Paragraph(no6_text, number_style)
+    paragraph11 = Paragraph(paragraph11_text, normal_indent_style)
+    content.append(no6)
+    content.append(paragraph11)
+    content.append(blank)
+
+    paragraph12_text = "May I take this opportunity to congratulate you on your admission and look forward to " \
+                       "welcoming you at the Kenya Institute of Mass Communication. “CONGRATULATIONS”."
+    paragraph12 = Paragraph(paragraph12_text, styles['Normal'])
+    content.append(paragraph12)
+    content.append(blank)
+    content.append(blank)
+
+    content.append(signature_img)
 
     doc.build(content)
     return response
