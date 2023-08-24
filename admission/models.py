@@ -41,7 +41,6 @@ class Student(AbstractUser, PermissionsMixin):
     phone_number2 = models.CharField(max_length=15)
     gender = models.CharField(max_length=50)
     mode = models.CharField(max_length=50)
-    type = models.CharField(max_length=50)
 
     objects = CustomUserManager()
 

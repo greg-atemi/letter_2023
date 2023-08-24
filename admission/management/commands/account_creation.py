@@ -30,15 +30,14 @@ class Command(BaseCommand):
                 town = row['Town']
                 mobile1 = row['Phone Number']
                 mobile2 = row['Phone Number 2']
-                mode = row['MODE']
+                mode = row['TYPE']
                 course = row['COURSE']
-                type = row['TYPE']
 
                 Student.objects.create(email=email, username=username, password=encrypted_password,
                                        index_number=index_number, full_name=full_name, gender=gender,
                                        box_no=box_no, box_code=box_code, town=town, email_address=email,
                                        course=course, phone_number=mobile1, phone_number2=mobile2,
-                                       mode=mode, serial_number=serial_number, type=type)
+                                       mode=mode, serial_number=serial_number)
 
                 self.stdout.write(self.style.SUCCESS(f'Successfully created student: '
                                                      f'{full_name}'))

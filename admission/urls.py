@@ -12,5 +12,6 @@ urlpatterns = [
     path('generate_pdf_postgrad/<path:index_no>', views.generate_pdf_postgrad, name='generate_pdf_postgrad'),
     path('generate_pdf_certificate/<path:index_no>', views.generate_pdf_certificate, name='generate_pdf_certificate'),
     path('generate_pdf_evening/<path:index_no>', views.generate_pdf_evening, name='generate_pdf_evening'),
-    path('generate_pdf_upgrading/<path:index_no>', views.generate_pdf_upgrading, name='generate_pdf_upgrading')
+    path('generate_pdf_upgrading/<path:index_no>', views.generate_pdf_upgrading, name='generate_pdf_upgrading'),
+    path('generate_pdf_eldoret/<path:index_no>', views.generate_pdf_eldoret, name='generate_pdf_eldoret')
 ]
