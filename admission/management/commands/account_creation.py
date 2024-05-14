@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand
 from django.contrib.auth.hashers import make_password
 from admission.models import Student
-import pandas as pd
+import pandas as pd # type: ignore
 
 
 class Command(BaseCommand):
